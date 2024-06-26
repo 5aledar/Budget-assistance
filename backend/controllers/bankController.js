@@ -14,6 +14,7 @@ const addNewBank = async (req, res) => {
                 balance: balance
             })
             bank.save()
+            res.status(200).json(bank)
         } else {
             res.status(400).json("data missing")
         }
