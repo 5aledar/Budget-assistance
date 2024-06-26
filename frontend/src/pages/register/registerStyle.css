@@ -12,12 +12,12 @@
     height: 60px;
     margin-right: 10px;
   }
-  .wrapper {
+  .wrapperb {
     width: 450px;
     background-color: #2B2840;
     color: #fff;
     border-radius: 48px;
-    padding: 50px 60px 610px 60px;
+    /* padding: 50px 60px 60px 60px; */
   }
   .form-login {
     font-size: 28px;
@@ -51,7 +51,7 @@
   
   }
  
-  .wrapper .btn {
+  .wrapperb .btn {
     width: 75px;
     height: 35px;
     background: #720FBF;
