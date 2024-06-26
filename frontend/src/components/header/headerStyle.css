@@ -1,0 +1,25 @@
+.header {
+    max-width: 90%;
+    margin:auto;
+    padding-block-start: 200px;
+    padding-block-end: 160px;
+}
+.content-header{
+    max-width: 80%; 
+}
+.title-header{
+    font-size: 66px;
+    font-weight: 600;
+}
+.subt-header{
+    font-size: 36px;
+    font-weight: 500;
+}
+.btn-header{
+    background-color: #720FBF;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    font-size: 24px;
+    padding: 8px 16px;
+}

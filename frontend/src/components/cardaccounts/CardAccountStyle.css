@@ -1,0 +1,31 @@
+*{
+    font-family: "Inter", sans-serif;
+}
+.card-account {
+    background-color: #2C207E;
+}
+
+.card-account .card-title1 {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 700;
+}
+.card-account .card-title2{
+    font-size: 12px;
+    font-weight: 400;
+}
+.card-account .card-text{
+    font-size: 36px;
+    font-weight: 700;
+}
+.withdraw ,.add-deposit{
+    background-color: #720FBF;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.withdraw:hover ,.add-deposit:hover{
+    background-color: #8F00FF;
+}

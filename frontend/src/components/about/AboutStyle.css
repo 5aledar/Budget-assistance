@@ -1,0 +1,16 @@
+body{
+    background-color: #1A182B;
+}
+.container-about  {
+    max-width: 90%;
+    margin:auto;
+    padding-block-start: 60px;
+}
+.about-img{
+    border-radius: 20px;
+    width: 379px;
+    height: 253px;
+}
+.about-img2{
+    margin-left: 100px;
+}

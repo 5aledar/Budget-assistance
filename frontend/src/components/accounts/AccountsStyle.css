@@ -1,0 +1,50 @@
+.add-account {
+    border-radius: 10px;
+    background-color: #201E31;
+    outline: none;
+    border: none;
+    color: #4F4B70;
+    width: 75px;
+    height: 75px;
+}
+
+.add-account:hover {
+    transform: scale(1.2);
+    transition: all 0.5s;
+}
+
+.add-deposit {
+    background-color: #720FBF;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.container-amount {
+    width: 359px;
+    height: 358px;
+    border-radius: 20px;
+    background-color: #1A182B;
+    border: solid 1px red;
+}
+
+.container-add-bank {
+    padding:60px 30px;
+    width: 642px;
+    height: 358px;
+    border-radius: 20px;
+    background-color: #1A182B;
+    border: 1px solid red;
+}
+.add-bank{
+    background-color: #720FBF;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    font-size: 20px;
+    font-weight: 500;
+}

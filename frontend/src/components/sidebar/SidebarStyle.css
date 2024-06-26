@@ -1,0 +1,17 @@
+.sidebar{
+    background-color: #2B2840;
+    text-align: center;
+    width: 270px;
+    height: 100vh;
+    position: fixed;
+    padding-top: 40px;
+}
+
+.p-sidebar{
+   padding:10px 0;
+   font-size: 20px;
+   margin-bottom: 3px;
+}
+.p-sidebar:hover{
+    background-color:#4B476C;
+}
