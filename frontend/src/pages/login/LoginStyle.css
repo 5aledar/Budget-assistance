@@ -13,9 +13,9 @@
     height: 60px;
     margin-right: 10px;
   }
-  .wrapper {
+  .wrapperb {
     width: 450px;
-    height: 586px;
+    /* height: 586px; */
     background-color: #2B2840;
     color: #fff;
     border-radius: 48px;
@@ -54,7 +54,7 @@
   
   }
  
-  .wrapper .btn {
+  .wrapperb .btn {
     width: 75px;
     height: 35px;
     background: #720FBF;
