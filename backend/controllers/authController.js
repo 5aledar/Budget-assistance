@@ -33,7 +33,8 @@ const register = async (req, res) => {
         message: 'The OTP is not valid',
       });
     }
-
+    //hash password
+    
     user = new User({ username, email, password });
     user.password = await bcrypt.hash(password, 10);
     generateTokenAndSetCookie(user._id, res);
