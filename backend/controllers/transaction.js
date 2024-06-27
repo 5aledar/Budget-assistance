@@ -1,14 +1,18 @@
 const Transaction = require('../models/Transaction');
 
 exports.createTransaction = async (req, res) => {
-  const bankAccountId = req.body.bankAccountId;
-  const { type, amount } = req.body;
-  const transaction = new Transaction({ bankAccountId, type, amount });
+  const bankAccountId = req.params.bankAccountId;
+  const date = new Date()
+  
+  const type = req.body.type
+  const amount = req.body.amount
+  const transaction = new Transaction({ bankAccountId,date,  type, amount });
   try {
     await transaction.save();
+    console.log("dd");
     res.json({ message: 'Transaction created successfully' });
   } catch (err) {
-    res.status(400).json({ error: 'Error creating transaction' });
+    res.status(400).json({ error: err.message });
   }
 };
 

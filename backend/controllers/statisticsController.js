@@ -1,13 +1,17 @@
-const Statistics = require('../models/Statistics');
-
+const Statistics = require("../models/Statistics");
+const Transaction = require("../models/Transaction");
 // Get daily expenses for a specific account
 exports.getDailyExpenses = async (req, res) => {
   const bankAccountId = req.params.bankAccountId;
   const date = new Date();
   const today = date.toISOString().split('T')[0];
-  const account = await Statistics.findById(bankAccountId);
-  const dailyTransactions = account.transactions.filter(transaction => transaction.date.toISOString().split('T')[0] === today);
-  const totalDailyExpenses = dailyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdrawal' ? transaction.amount : 0), 0);
+  const account = await Transaction.find({ bankAccountId: bankAccountId });
+  
+  const dailyTransactions = account.filter(transaction => transaction.date.toISOString().split('T')[0] === today);
+  
+  const totalDailyExpenses = dailyTransactions.reduce((acc , transaction) => acc + (transaction.type === 'withdraw' ? transaction.amount : 0), 0);
+  console.log(totalDailyExpenses);
+
   res.json({ total: totalDailyExpenses, count: dailyTransactions.length });
 };
 
@@ -18,8 +22,15 @@ exports.getWeeklyExpenses = async (req, res) => {
   const startOfWeek = getStartOfWeek(date);
   const endOfWeek = getEndOfWeek(date);
   const account = await Statistics.findById(bankAccountId);
-  const weeklyTransactions = account.transactions.filter(transaction => transaction.date >= startOfWeek && transaction.date < endOfWeek);
-  const totalWeeklyExpenses = weeklyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdrawal' ? transaction.amount : 0), 0);
+  const weeklyTransactions = account.transactions.filter(
+    (transaction) =>
+      transaction.date >= startOfWeek && transaction.date < endOfWeek
+  );
+  const totalWeeklyExpenses = weeklyTransactions.reduce(
+    (acc, transaction) =>
+      acc + (transaction.type === "withdrawal" ? transaction.amount : 0),
+    0
+  );
   res.json({ total: totalWeeklyExpenses, count: weeklyTransactions.length });
 };
 
@@ -30,8 +41,15 @@ exports.getMonthlyExpenses = async (req, res) => {
   const startOfMonth = getStartOfMonth(date);
   const endOfMonth = getEndOfMonth(date);
   const account = await Statistics.findById(bankAccountId);
-  const monthlyTransactions = account.transactions.filter(transaction => transaction.date >= startOfMonth && transaction.date < endOfMonth);
-  const totalMonthlyExpenses = monthlyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdrawal' ? transaction.amount : 0), 0);
+  const monthlyTransactions = account.transactions.filter(
+    (transaction) =>
+      transaction.date >= startOfMonth && transaction.date < endOfMonth
+  );
+  const totalMonthlyExpenses = monthlyTransactions.reduce(
+    (acc, transaction) =>
+      acc + (transaction.type === "withdrawal" ? transaction.amount : 0),
+    0
+  );
   res.json({ total: totalMonthlyExpenses, count: monthlyTransactions.length });
 };
 
@@ -42,8 +60,15 @@ exports.getYearlyExpenses = async (req, res) => {
   const startOfYear = getStartOfYear(date);
   const endOfYear = getEndOfYear(date);
   const account = await Statistics.findById(bankAccountId);
-  const yearlyTransactions = account.transactions.filter(transaction => transaction.date >= startOfYear && transaction.date < endOfYear);
-  const totalYearlyExpenses = yearlyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdrawal' ? transaction.amount : 0), 0);
+  const yearlyTransactions = account.transactions.filter(
+    (transaction) =>
+      transaction.date >= startOfYear && transaction.date < endOfYear
+  );
+  const totalYearlyExpenses = yearlyTransactions.reduce(
+    (acc, transaction) =>
+      acc + (transaction.type === "withdrawal" ? transaction.amount : 0),
+    0
+  );
   res.json({ total: totalYearlyExpenses, count: yearlyTransactions.length });
 };
 
@@ -56,7 +81,7 @@ function getStartOfWeek(date) {
 
 function getEndOfWeek(date) {
   const day = date.getDay();
-  const diff = date.getDate() + (7 - day) % 7;
+  const diff = date.getDate() + ((7 - day) % 7);
   return new Date(date.setDate(diff));
 }
 

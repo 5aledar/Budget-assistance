@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const statisticsController = require('../controllers/statisticsController');
 
-router.get('/daily/:accountId', statisticsController.getDailyExpenses);
-router.get('/weekly/:accountId', statisticsController.getWeeklyExpenses);
-router.get('/monthly/:accountId',statisticsController.getMonthlyExpenses);
-router.get('/yearly/:accountId',statisticsController.getYearlyExpenses);
+router.post('/daily/:bankAccountId', statisticsController.getDailyExpenses);
+router.get('/weekly/:bankAccountId', statisticsController.getWeeklyExpenses);
+router.get('/monthly/:bankAccountId',statisticsController.getMonthlyExpenses);
+router.get('/yearly/:bankAccountId',statisticsController.getYearlyExpenses);
 
 module.exports = router;
