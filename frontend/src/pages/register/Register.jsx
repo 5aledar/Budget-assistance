@@ -6,16 +6,16 @@ import logo from "../../assets/Logo.svg"
 const Register = () => {
   return (
 <div>
-      <div className="container p-5 container-form-register">
-        <div className="row p-5 flex-column">
-          <div className="col mb-5 pb-3 d-flex align-items-end justify-content-center">
+      <div className="container container-form-register">
+        <div className="row flex-column">
+          <div className="col  py-3 d-flex align-items-end justify-content-center">
             <img class="logo-img" src={logo} alt="" />
             <h2 class="text-light title-form">Budget-Assistance</h2>
           </div>
-          <div className="col">
-            <div class="wrapper">
+          
+            <div class="wrapperb">
               <form action="">
-                <p class="form-login mb-4 mt-5">Welcome You</p>
+                <p class="form-login mt-2">Welcome You</p>
                 <div class="input-box pt-4 mb-2">
                   <label htmlFor="" class="mb-2 label-form">Name</label>
                   <input required="" type="text" />
@@ -34,7 +34,7 @@ const Register = () => {
                 <NavLink to={"/login"}><button class="btn" type="submit">LogIn</button></NavLink>
               </form>
             </div>
-          </div>
+          
         </div>
       </div>
 

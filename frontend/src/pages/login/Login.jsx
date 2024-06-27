@@ -6,14 +6,14 @@ import logo from "../../assets/Logo.svg"
 const Login = () => {
   return (
     <div>
-      <div className="container p-5 container-form-login">
-        <div className="row p-5 flex-column">
-          <div className="col mb-5 pb-3 d-flex align-items-end justify-content-center">
+      <div className="container container-form-login">
+        <div className="row  flex-column">
+          <div className="col mt-4 mb-4 pb-3 d-flex align-items-end justify-content-center">
             <img class="logo-img" src={logo} alt="" />
             <h2 class="text-light title-form">Budget-Assistance</h2>
           </div>
-          <div className="col">
-            <div class="wrapper">
+          
+            <div class="wrapperb">
               <form action="">
                 <p class="form-login mb-4 mt-5">Welcome Back</p>
                 <div class="input-box pt-4 mb-2">
@@ -30,7 +30,7 @@ const Login = () => {
                 <NavLink to={"/home"}><button class="btn" type="submit">LogIn</button></NavLink>
               </form>
             </div>
-          </div>
+          
         </div>
       </div>
 
