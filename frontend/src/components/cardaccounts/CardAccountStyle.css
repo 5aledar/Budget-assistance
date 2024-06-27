@@ -4,6 +4,10 @@
 .card-account {
     background-color: #2C207E;
 }
+.allcard{
+    display: flex;
+    flex-direction: row;
+}
 
 .card-account .card-title1 {
     font-size: 20px;

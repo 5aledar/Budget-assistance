@@ -5,14 +5,12 @@ import CardAccounts from "../../components/cardaccounts/CardAccounts"
 const Accounts = () => {
     return (
         <div>
-            <div className="container">
+            <div className="container mt-5">
                 <div className="row d-flex">
                     <div className="col-lg-5 col-md-12 col-sm-12">
-                        <CardAccounts cardtitle1={"Paypal"} cardtitle2={"acc id  : 73544539"} cardtext={"1,456.99 $"} />
+                        <CardAccounts />
                     </div>
-                    <div className="col-lg-5 col-md-12 col-sm-12">
-                        <CardAccounts cardtitle1={"Visa"} cardtitle2={"acc id  : 23143697"} cardtext={"341.00 $"} />
-                    </div>
+                    
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <button class="add-account" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
