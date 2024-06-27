@@ -7,6 +7,7 @@ const connectToMongoDB = require('./db/connectToMongoDB')
 const authRoutes = require('./routes/auth.routes')
 const otpRoutes = require('./routes/otpRouter')
 const bankRoutes = require('./routes/bankRoutes')
+
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())

@@ -13,8 +13,8 @@ const addNewBank = async (req, res) => {
                 accountNumber: accountNumber,
                 balance: balance
             })
-            const findBank = await Bank.findOne({ bankName })
-         
+            const findBank = await Bank.findOne({ bankName:bankName ,userId:userId})
+         console.log(findBank);
             if (findBank) {
                 res.status(400).json("bank already exist")
                 return
@@ -34,8 +34,8 @@ const addNewBank = async (req, res) => {
 const getUserBanks = async (req, res) => {
     try {
         const userId = req.params.userId
-        const banks = Bank.find({ userId: userId })
-        console.log({banks});
+        const banks = await Bank.find({ userId: userId })
+        // console.log(banks);
         res.status(200).json({banks})
     } catch (error) {
         console.log("internal server error");
