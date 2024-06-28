@@ -8,7 +8,7 @@ const addNewBank = async (req, res) => {
         const balance = req.body.balance
         if (userId && bankName && accountNumber) {
             const bank = new Bank({
-                userId: userId,
+                userId: userId, 
                 bankName: bankName,
                 accountNumber: accountNumber,
                 balance: balance

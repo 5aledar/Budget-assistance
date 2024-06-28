@@ -1,7 +1,5 @@
 const bcrypt = require('bcryptjs');
-
 const User = require('../models/User');
-
 const OTP = require('../models/otpModel');
 const generateTokenAndSetCookie = require('../utils/generateTokenAndSetCookies')
 
@@ -118,4 +116,4 @@ const logout = (req, res) => {
 };
 
 
-module.exports = { register, login, logout };
+module.exports = { register, login, logout ,getUser};
