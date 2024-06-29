@@ -1,0 +1,25 @@
+.conten{
+    margin-top: 20px;
+}
+.icon-container {
+  width: 260px;
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+  color: white;
+}
+.icon-container p {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  margin-left: 15px;
+}
+
+.icon {
+  margin: 0 1px;
+}
+
+.size-10 {
+  font-size: 60px;
+  color: white;
+}

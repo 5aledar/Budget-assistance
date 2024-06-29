@@ -1,3 +1,6 @@
+.container{
+    width: 100%;
+}
 .add-account {
     border-radius: 10px;
     background-color: #201E31;

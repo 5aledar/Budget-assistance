@@ -1,5 +1,10 @@
 *{
     font-family: "Inter", sans-serif;
+}.card{
+    width: 320px;
+    height: 150px;
+    border-radius: 15px;
+    margin-right: 15px;
 }
 .card-account {
     background-color: #2C207E;
@@ -32,4 +37,8 @@
 }
 .withdraw:hover ,.add-deposit:hover{
     background-color: #8F00FF;
+}
+.add-account{
+    margin: 40px;
+    border: 2px solid #000;
 }

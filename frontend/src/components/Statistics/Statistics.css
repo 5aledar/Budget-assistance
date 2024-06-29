@@ -1,0 +1,35 @@
+.cardSta{
+    width: 260px;
+    height: 155px;
+    background-color:#4F207E;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+}.cardSta p{
+font-size: 18px;
+width: 200px;
+margin: 5px;
+line-height: 21px;
+}
+.cardSta h1{
+font-size: 36px;
+font-family: inter;
+}
+.cardSta h5{
+font-size: 20px;
+
+}
+.add-accountBtn {
+    border-radius: 10px;
+    background-color: #201E31;
+    outline: none;
+    border: none;
+    color: #4F4B70;
+    width: 140px;
+    height: 75px;
+    margin-top: 55px;
+    margin-left: 25px;
+}
+

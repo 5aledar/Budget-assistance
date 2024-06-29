@@ -9,14 +9,14 @@ export default function DepositHistory(params) {
     return (
       <div>
         <table className="text-white w-100" style={{ borderCollapse: 'collapse' }}>
-          <tr style={{ borderBottom: '1px solid #4B476C' }}>
+          <tr style={{ borderBottom: '1px solid #4B476C' , height:"59px" }}>
             <th>Amount</th>
             <th>Bank</th>
             <th>Date</th>
             <th>Description</th>
           </tr>
           {data.map(el => (
-            <tr style={{ borderBottom: '1px solid #4B476C' }}>
+            <tr style={{ borderBottom: '1px solid #4B476C' , height:"59px" }}>
               <td>{el.Amount} $</td>
               <td>{el.Bank}</td>
               <td>{el.Date}</td>
