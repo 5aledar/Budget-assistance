@@ -8,6 +8,7 @@
     max-width: 80%; 
     background: rgba(217, 217, 217, 0.03);
      backdrop-filter: blur(2.5px);
+     -webkit-backdrop-filter:blur(2.5px)
 }
 .title-header{
     font-size: 66px;
