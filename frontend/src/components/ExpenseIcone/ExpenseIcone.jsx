@@ -5,7 +5,7 @@ import { LuShirt } from "react-icons/lu";
 
 export default function ExpenseIcon() {
   return (
-    <div className="d-flex conten">
+    <div className="d-flex conten general-card">
       <div className="icon-container">
         <LuHeartPulse className="icon size-10" />
         <div>
