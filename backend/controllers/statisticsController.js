@@ -47,6 +47,27 @@ exports.getWeeklyExpenses = async (req, res) => {
   res.json({ total: totalWeeklyExpenses, count: weeklyTransactions.length });
 };
 
+
+exports.getWeeklyDeposit = async (req, res) => {
+  const bankAccountId = req.params.bankAccountId;
+  const date = new Date();
+  const today = date.toISOString().split('T')[0];
+  const firstDayOfWeek = getFirstDayOfWeek(date);
+  const account = await Transaction.find({ bankAccountId: bankAccountId });
+
+  const weeklyTransactions = account.filter(transaction => {
+    const transactionDate = transaction.date.toISOString().split('T')[0];
+    return transactionDate >= firstDayOfWeek && transactionDate <= today && transaction.type === "deposit";
+  });
+
+
+  
+  const totalWeeklyExpenses = weeklyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'deposit' ? transaction.amount : 0), 0);
+  console.log(totalWeeklyExpenses);
+
+  res.json({ total: totalWeeklyExpenses, count: weeklyTransactions.length });
+};
+
 function getFirstDayOfWeek(date) {
   const dayOfWeek = date.getDay();
   const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
@@ -62,6 +83,7 @@ function getLastWeekFirstDay(date) {
 exports.getPreviosWeekExpenses = async (req, res) => {
   const bankAccountId = req.params.bankAccountId;
   const date = new Date();
+
   const firstDayOfWeek = getFirstDayOfWeek(date);
   const lastWeekFirstDay = getLastWeekFirstDay(date);
   const account = await Transaction.find({ bankAccountId: bankAccountId });
@@ -81,21 +103,20 @@ exports.getPreviosWeekExpenses = async (req, res) => {
 exports.getMonthlyExpenses = async (req, res) => {
   const bankAccountId = req.params.bankAccountId;
   const date = new Date();
-  const startOfMonth = getStartOfMonth(date);
-  const endOfMonth = getEndOfMonth(date);
-  const account = await Statistics.findById(bankAccountId);
-  const monthlyTransactions = account.transactions.filter(
-    (transaction) =>
-      transaction.date >= startOfMonth && transaction.date < endOfMonth
-  );
-  const totalMonthlyExpenses = monthlyTransactions.reduce(
-    (acc, transaction) =>
-      acc + (transaction.type === "withdrawal" ? transaction.amount : 0),
-    0
-  );
+  const firstDayOfMonth = getStartOfMonth(date)
+  const lastDayOfMonth = getEndOfMonth(date)
+  const account = await Transaction.find({ bankAccountId: bankAccountId });
+
+  const monthlyTransactions = account.filter(transaction => {
+    const transactionDate = transaction.date;
+    return transactionDate >= firstDayOfMonth && transactionDate <= lastDayOfMonth && transaction.type === "withdraw";
+  });
+
+  const totalMonthlyExpenses = monthlyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdraw' ? transaction.amount : 0), 0);
+  console.log(totalMonthlyExpenses);
+
   res.json({ total: totalMonthlyExpenses, count: monthlyTransactions.length });
 };
-
 // Get yearly expenses for a specific account
 exports.getYearlyExpenses = async (req, res) => {
   const bankAccountId = req.params.bankAccountId;
