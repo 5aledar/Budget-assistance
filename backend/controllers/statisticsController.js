@@ -28,7 +28,7 @@ exports.getWeeklyExpenses = async (req, res) => {
   );
   const totalWeeklyExpenses = weeklyTransactions.reduce(
     (acc, transaction) =>
-      acc + (transaction.type === "withdrawal" ? transaction.amount : 0),
+      acc + (transaction.type === "withdraw" ? transaction.amount : 0),
     0
   );
   res.json({ total: totalWeeklyExpenses, count: weeklyTransactions.length });
