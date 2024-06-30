@@ -50,7 +50,7 @@ const sendVerificationEmail = async(email, otp) =>{
       `<h1>your verification code </h1>
        <p>Here is your OTP code: ${otp} </p>`
     );
-
+console.log(mailResponse);
     console.log("Email sent successfully: ", mailResponse);
   } catch (error) {
     console.log("Error occurred while sending email: ", error);
