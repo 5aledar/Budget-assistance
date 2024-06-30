@@ -10,7 +10,7 @@ exports.createTransaction = async (req, res) => {
   try {
     await transaction.save();
     console.log("dd");
-    res.json({ message: 'Transaction created successfully' });
+    res.json({ message: 'Transaction created successfully'});
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
