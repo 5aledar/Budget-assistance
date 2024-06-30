@@ -39,6 +39,8 @@ exports.getWeeklyExpenses = async (req, res) => {
     return transactionDate >= firstDayOfWeek && transactionDate <= today && transaction.type === "withdraw";
   });
 
+
+  
   const totalWeeklyExpenses = weeklyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdraw' ? transaction.amount : 0), 0);
   console.log(totalWeeklyExpenses);
 
