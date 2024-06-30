@@ -25,7 +25,7 @@ const Login = () => {
                   <input required="" type="password" />
                 </div>
                 <div class="remember-forgot pt-4 pb-5">
-                  <NavLink to={"/register"}>register a new account</NavLink>
+                  <NavLink to={"/"}>register a new account</NavLink>
                 </div>
                 <NavLink to={"/home"}><button class="btn" type="submit">LogIn</button></NavLink>
               </form>

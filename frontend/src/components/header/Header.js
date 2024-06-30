@@ -8,25 +8,34 @@ const Header = () => {
   const [email, setEmail] = useState(null);
   const Navigate=useNavigate()
   const sentOTB = async (email) => {
-    try{
+    if(email){
+
+      try{
         const res = await fetch("http://localhost:3000/api/send-otp", {
-            headers: { "Content-Type": "application/json" },
-            method: "POST",
-            body: JSON.stringify({ email: email }),
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          body: JSON.stringify({ email: email }),
         });
         console.log(res);
         const data = await res.json();
 
         return data;
-    }catch(err){
+      }catch(err){
         console.log(err.message);
+      }
     }
+   
 }
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    await sentOTB(email);
-    Navigate('/register')
+    
+     if(email)
+      { sentOTB(email);
+    Navigate('/register')}
+    else {
+      Navigate('/')
+    }
     
   };
   return (
@@ -41,17 +50,16 @@ const handleSubmit = async (e) => {
         <Navbar />
         <div className="header text-light">
           <div className="content-header">
-            <h1 class="title-header pb-2">Stay Financially aware</h1>
-            <p class="subt-header">
+            <h1 className="title-header pb-2">Stay Financially aware</h1>
+            <p className="subt-header">
               Using our website , we can help you keep tracking all your incomes
               , expenses and give you all the statistics you need{" "}
             </p>
-            <form>
+            <form onSubmit={handleSubmit} className="formx">
               <button type="submit"
-                onClick={handleSubmit}
-                class="text-light btn-header mt-5 mb-5"
+                className="text-light btn-header mt-5 mb-5"
               >
-                Try it for free
+               Get Started
               </button>
               <input
                 onChange={(e) => setEmail(e.target.value)}
@@ -59,6 +67,7 @@ const handleSubmit = async (e) => {
                 type="email"
                 placeholder="enter your email address"
                 required
+                className="inp m-5 "
               />
             </form>
           </div>

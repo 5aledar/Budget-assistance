@@ -15,23 +15,31 @@ const Register = () => {
           
             <div class="wrapperb">
               <form action="">
-                <p class="form-login mt-2">Welcome You</p>
-                <div class="input-box pt-4 mb-2">
-                  <label htmlFor="" class="mb-2 label-form">Name</label>
+                <p class="form-login ">Welcome</p>
+                <div class="input-box pt-2 ">
+                  <label htmlFor="" class=" label-form">Name</label>
                   <input required="" type="text" />
                 </div>
-                <div class="input-box pt-4 mb-2">
-                  <label htmlFor="" class="mb-2 label-form">Email</label>
+                <div class="input-box pt-2 ">
+                  <label htmlFor="" class=" label-form">Email</label>
                   <input required="" type="email" />
                 </div>
-                <div class="input-box pt-4">
-                  <label htmlFor="" class="mb-2 label-form">Password</label>
+                <div class="input-box pt-2">
+                  <label htmlFor="" class=" label-form">Password</label>
                   <input required="" type="password" />
                 </div>
-                <div class="remember-forgot pt-4 pb-5">
+                <div class="input-box pt-2">
+                  <label htmlFor="" class=" label-form">Confirm Password</label>
+                  <input required="" type="password" />
+                </div>
+                <div class="input-box pt-2">
+                  <label htmlFor="" class=" label-form">OTP</label>
+                  <input required="" type="password" />
+                </div>
+                <div class="remember-forgot pt-2 pb-5">
                   <NavLink to={"/login"}>Already have an account</NavLink>
                 </div>
-                <NavLink to={"/login"}><button class="btn" type="submit">LogIn</button></NavLink>
+                <NavLink to={"/home"}><button class="btn" type="submit">Regiter</button></NavLink>
               </form>
             </div>
           
