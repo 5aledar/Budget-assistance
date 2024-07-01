@@ -31,7 +31,8 @@ const CardAccounts = (props) => {
                                 <path d="M29.5151 16.5L2.24241 16.5" stroke="#4F4B70" stroke-width="3" stroke-linecap="round" />
                             </svg>
                         </button>
-                        
+
+                    
             {/* <div className="container-amount d-flex flex-column justify-content-center align-items-center p-4">
               <div class="d-flex flex-column">
               <label htmlFor="" class="text-light mb-3" style={{fontSize:"20px"}}>Amount</label>
