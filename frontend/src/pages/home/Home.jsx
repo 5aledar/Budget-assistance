@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import "./HomeStyle.css";
+import React, { useState } from 'react';
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from '../../components/sidebar/Sidebar';
 import GeneralStatistics from '../../components/GeneralStatistics/GeneralStatistics';
@@ -26,9 +26,11 @@ const Home = () => {
           <div className='container-div'>
             {/* Conditionally render based on activeIndex */}
             {activeIndex === 0 && <GeneralStatistics/>}
+           </div>
+           <div className="mx-5 p-4">
             {activeIndex === 1 && <DepositHistory/>}
             {activeIndex === 2 && <ExpensesHistory/>}
-          </div>
+            </div>
         </div>
       </div>
     </div>
