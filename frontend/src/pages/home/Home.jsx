@@ -19,19 +19,17 @@ const Home = () => {
     <div>
       <div className="container-home">
       <Navbar />
-      <div className="container container-home-content">
-        <div className="row ">
-          <div className="col-3">
-            <Sidebar onClickItem={handleSidebarItemClick} />
+      <div className="container-home-content mt-5">
+          <div class="fixed-div">
+          <Sidebar onClickItem={handleSidebarItemClick} />
           </div>
-          <div className="col-9">
+          <div className='container-div'>
             {/* Conditionally render based on activeIndex */}
             {activeIndex === 0 && <GeneralStatistics/>}
             {activeIndex === 1 && <DepositHistory/>}
             {activeIndex === 2 && <ExpensesHistory/>}
           </div>
         </div>
-      </div>
       </div>
     </div>
   );

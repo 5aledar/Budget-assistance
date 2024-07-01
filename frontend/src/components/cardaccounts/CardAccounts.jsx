@@ -9,9 +9,9 @@ const CardAccounts = (props) => {
 
     ]
     return (
-        <div className=' d-inline-flex w-100 flex-wrap'>
-            {Account.map(acc=>
-            <div class="card card-account text-light" >
+        <div className="d-flex general-card">
+            {Account.map(acc=> 
+            <div class="card-parent card-account text-light" >
                 <div class="card-body">
                     <div className="d-flex justify-content-between">
                         <p class="card-title card-title1 m-0">{acc.bankName}</p>
@@ -23,7 +23,7 @@ const CardAccounts = (props) => {
                          <button class="card-link withdraw p-2">Withdraw</button>
                     </div>
                 </div>
-            </div>
+            </div> 
             )}
              <button class="add-account " >
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -31,7 +31,40 @@ const CardAccounts = (props) => {
                                 <path d="M29.5151 16.5L2.24241 16.5" stroke="#4F4B70" stroke-width="3" stroke-linecap="round" />
                             </svg>
                         </button>
+                        
+            {/* <div className="container-amount d-flex flex-column justify-content-center align-items-center p-4">
+              <div class="d-flex flex-column">
+              <label htmlFor="" class="text-light mb-3" style={{fontSize:"20px"}}>Amount</label>
+              <input type="text" name="" value="" 
+              style={{ backgroundColor: "#423F5A", border: "none" ,outline:"none" ,borderRadius:"10px"}} class="mb-5 p-2 px-4" />
+              </div>
+                <button class="card-link add-deposit pt-2 pb-2 px-4">Add Deposit</button>
+            </div> */}
+
+
+
+            {/* <div className="container-add-bank d-flex flex-wrap gap-3">
+            <div class="d-flex flex-column">
+              <label htmlFor="" class="text-light mb-3" style={{fontSize:"20px"}}>Bank name :</label>
+              <input type="text" name="" value="" 
+              style={{ backgroundColor: "#423F5A", border: "none" ,outline:"none" ,borderRadius:"10px"}} class="mb-5 p-2 px-4" />
+              </div>
+              <div class="d-flex flex-column">
+              <label htmlFor="" class="text-light mb-3" style={{fontSize:"20px"}}>Account id :</label>
+              <input type="text" name="" value="" 
+              style={{ backgroundColor: "#423F5A", border: "none" ,outline:"none" ,borderRadius:"10px"}} class="mb-5 p-2 px-4" />
+              </div>
+              <div class="d-flex flex-column">
+              <label htmlFor="" class="text-light mb-3" style={{fontSize:"20px"}}>Account balance</label>
+              <input type="text" name="" value="" 
+              style={{ backgroundColor: "#423F5A", border: "none" ,outline:"none" ,borderRadius:"10px"}} class="mb-5 p-2 px-4" />
+              </div>
+                <button class="card-link add-bank pt-2 pb-2 px-4">Add bank</button>
+            </div> */}
+        
         </div>
+
+        
     )
 }
 

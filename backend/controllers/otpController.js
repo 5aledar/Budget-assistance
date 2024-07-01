@@ -5,6 +5,9 @@ const mailSender = require('../utils/mailSender');
 exports.sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
+    if (email == null) {
+      return res.status(400).json({ error: "unvalid input" })
+    }
     // Check if user is already present
     const checkUserPresent = await User.findOne({ email });
     // If user found with provided email
@@ -26,31 +29,31 @@ exports.sendOTP = async (req, res) => {
       });
       result = await OTP.findOne({ otp: otp });
     }
-  newotp = new OTP({ email , otp })
-  newotp.save()
-  sendVerificationEmail(email , otp)
+    newotp = new OTP({ email, otp })
+    newotp.save()
+    sendVerificationEmail(email, otp)
     res.status(200).json({
       success: true,
       message: 'OTP sent successfully',
       otp,
     });
-    return newotp
+    console.log(newotp);
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ success: false, error: error.message });
   }
 };
 
-const sendVerificationEmail = async(email, otp) =>{
+const sendVerificationEmail = async (email, otp) => {
   try {
-   
+
     const mailResponse = await mailSender(
       email,
       "BUDGET-ASSISTANCE VERIFICATION",
       `<h1>your verification code </h1>
        <p>Here is your OTP code: ${otp} </p>`
     );
-
+console.log(mailResponse);
     console.log("Email sent successfully: ", mailResponse);
   } catch (error) {
     console.log("Error occurred while sending email: ", error);

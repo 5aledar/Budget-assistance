@@ -84,9 +84,9 @@ const NavBar = () => {
               <li className="nav-item-a p-2">
                 <NavLink  to={"/login"}>LogIn</NavLink>
               </li>
-              <li className="nav-item-a p-2">
+              {/* <li className="nav-item-a p-2">
                 <NavLink  to={"/register"}>Register</NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

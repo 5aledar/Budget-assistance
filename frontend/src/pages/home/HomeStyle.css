@@ -5,30 +5,31 @@
 body{
     background-color:  #1A182B;
 }
-.container-home-content{
-    margin: 59px 0 0 0;
-    padding: 0;
+
+.container-div{
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  min-width: 400px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
+ .container-home-content{
+   position: relative;
+}
+  
+.fixed-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Example width */
+  height: 100vh; /* Full viewport height */
+  background-color: white; /* Or any color */
+  z-index: 10; /* Ensure it's above other elements */
+}
 
-/* HomeStyle.css */
-
-/* Add this to make the sidebar and main content area stack on top of each other on small screens */
-@media only screen and (max-width: 768px) {
-    .container-home-content {
-      flex-direction: column;
-    }
-    .col-3 {
-      width: 100%; /* make the sidebar take up full width on small screens */
-    }
-    .col-9 {
-      width: 100%; /* make the main content area take up full width on small screens */
-    }
-    .sidebar {
-      display: none; /* add this to make the sidebar appear on top of the main content area */
-    }
-    .main-content {
-      position: relative; /* add this to make the main content area relative to its parent */
-      z-index: 0; /* add this to make the main content area appear below the sidebar */
-    }
-  }
+.container-home-content {
+  padding-left: 250px; 
+}

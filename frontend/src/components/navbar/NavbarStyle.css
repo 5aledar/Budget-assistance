@@ -5,6 +5,7 @@
 .navbar{
     background: rgba(217, 217, 217, 0.03);
      backdrop-filter: blur(2.5px);
+     -webkit-backdrop-filter:blur(2.5px)
 }
 .container-nav{
     max-width: 94%;
