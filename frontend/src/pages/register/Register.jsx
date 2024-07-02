@@ -23,8 +23,8 @@ const Register = () => {
       <div className="container container-form-register">
         <div className="row flex-column">
           <div className="col  py-3 d-flex align-items-end justify-content-center">
-            <img class="logo-img" src={logo} alt="" />
-            <h2 class="text-light title-form">Budget-Assistance</h2>
+            <img className="logo-img" src={logo} alt="" />
+            <h2 className="text-light title-form">Budget-Assistance</h2>
           </div>
 
           <div class="wrapperb">
