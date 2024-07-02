@@ -8,7 +8,7 @@ import DepositHistory from '../../components/Deposit History/Deposit History';
 
 const Home = () => {
   // State to keep track of which item is currently being displayed
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Callback to handle sidebar item selection
   const handleSidebarItemClick = (index) => {
@@ -27,7 +27,7 @@ const Home = () => {
             {/* Conditionally render based on activeIndex */}
             {activeIndex === 0 && <GeneralStatistics/>}
            </div>
-           <div className="mx-5 p-4">
+           <div className="ps-4">
             {activeIndex === 1 && <DepositHistory/>}
             {activeIndex === 2 && <ExpensesHistory/>}
             </div>

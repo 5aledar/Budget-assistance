@@ -9,37 +9,37 @@ const Register = () => {
       <div className="container container-form-register">
         <div className="row flex-column">
           <div className="col  py-3 d-flex align-items-end justify-content-center">
-            <img class="logo-img" src={logo} alt="" />
-            <h2 class="text-light title-form">Budget-Assistance</h2>
+            <img className="logo-img" src={logo} alt="" />
+            <h2 className="text-light title-form">Budget-Assistance</h2>
           </div>
           
-            <div class="wrapperb">
+            <div className="wrapperb">
               <form action="">
-                <p class="form-login ">Welcome</p>
-                <div class="input-box pt-2 ">
+                <p className="form-login ">Welcome</p>
+                <div className="input-box pt-2 ">
                   <label htmlFor="" class=" label-form">Name</label>
-                  <input required="" type="text" />
+                  <input required type="text" />
                 </div>
-                <div class="input-box pt-2 ">
+                <div className="input-box pt-2 ">
                   <label htmlFor="" class=" label-form">Email</label>
-                  <input required="" type="email" />
+                  <input required type="email" />
                 </div>
-                <div class="input-box pt-2">
+                <div className="input-box pt-2">
                   <label htmlFor="" class=" label-form">Password</label>
-                  <input required="" type="password" />
+                  <input required type="password" />
                 </div>
-                <div class="input-box pt-2">
+                <div className="input-box pt-2">
                   <label htmlFor="" class=" label-form">Confirm Password</label>
-                  <input required="" type="password" />
+                  <input required type="password" />
                 </div>
-                <div class="input-box pt-2">
-                  <label htmlFor="" class=" label-form">OTP</label>
-                  <input required="" type="password" />
+                <div className="input-box pt-2">
+                  <label htmlFor="" class=" label-form">Verification Code</label>
+                  <input required type="password" />
                 </div>
-                <div class="remember-forgot pt-2 pb-5">
+                <div className="remember-forgot pt-2 pb-5">
                   <NavLink to={"/login"}>Already have an account</NavLink>
                 </div>
-                <NavLink to={"/home"}><button class="btn" type="submit">Regiter</button></NavLink>
+                <button class="btn" type="submit" >Regiter</button>
               </form>
             </div>
           
