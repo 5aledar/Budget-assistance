@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./LoginStyle.css"
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Logo.svg"
-
+import useLogin from '../../hooks/useLogin'
 const Login = () => {
+  const [email , setEmail] = useState('')
+  const [password , setPassword] = useState('')
+  const  login  = useLogin();
+  
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		await login(email, password);
+	};
   return (
     <div>
       <div className="container container-form-login">
@@ -14,15 +22,15 @@ const Login = () => {
           </div>
           
             <div class="wrapperb">
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <p class="form-login mb-4 mt-5">Welcome Back</p>
                 <div class="input-box pt-4 mb-2">
                   <label htmlFor="" class="mb-2 label-form">Email</label>
-                  <input required="" type="email" />
+                  <input required="" type="email" placeholder='Enter Email' value={email} onChange={(e)=>{setEmail(e.target.value)}} />
                 </div>
                 <div class="input-box pt-4">
                   <label htmlFor="" class="mb-2 label-form">Password</label>
-                  <input required="" type="password" />
+                  <input required="" type="password" placeholder='Enter Password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 </div>
                 <div class="remember-forgot pt-4 pb-5">
                   <NavLink to={"/"}>register a new account</NavLink>
