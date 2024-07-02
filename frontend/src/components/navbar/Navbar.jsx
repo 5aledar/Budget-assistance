@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import './NavbarStyle.css'
 import * as bootstrap from "bootstrap";
 import logo from "../../assets/Logo.svg"
-
-
+import { useAuthContext } from "../../context/AuthContext";
+import useLogout from "../../hooks/useLogout";
 const NavBar = () => {
+  const logout = useLogout()
+  const { authUser } = useAuthContext()
   window.addEventListener("DOMContentLoaded", (event) => {
     var navbarShrink = function () {
       const navbarCollapsible = document.body.querySelector("#mainNav");
@@ -56,7 +58,7 @@ const NavBar = () => {
       >
         <div className="container container-nav">
           <div className="d-flex">
-          <NavLink  to={"/home"}><img class="navbar-logo" src={logo} alt=""/></NavLink>
+            <NavLink to={"/home"}><img class="navbar-logo" src={logo} alt="" /></NavLink>
             <h1 className="navbar-brand text-light">
               Budget-Assistance
             </h1>
@@ -76,17 +78,19 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
               <li className="nav-item p-2 about ">
-                <NavLink class="text-light" to={"/about"}>About us</NavLink>
+                <NavLink class="text-light" to={""}>About us</NavLink>
               </li>
               <li className="nav-item p-2 contact ">
                 <NavLink class="text-light" to={""}>Contact us</NavLink>
               </li>
-              <li className="nav-item-a p-2">
-                <NavLink  to={"/login"}>LogIn</NavLink>
-              </li>
-              {/* <li className="nav-item-a p-2">
-                <NavLink  to={"/register"}>Register</NavLink>
-              </li> */}
+              {
+                !authUser ?
+                  <li className="nav-item-a p-2">
+                    <NavLink to={"/login"}>LogIn</NavLink>
+                  </li> : <li className="nav-item-a p-2">
+                    <NavLink to={"/"}><button onClick={logout}>Logout</button></NavLink>
+                  </li>}
+
             </ul>
           </div>
         </div>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import "./HomeStyle.css";
+import React, { useState } from 'react';
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from '../../components/sidebar/Sidebar';
 import GeneralStatistics from '../../components/GeneralStatistics/GeneralStatistics';
@@ -8,7 +8,7 @@ import DepositHistory from '../../components/Deposit History/Deposit History';
 
 const Home = () => {
   // State to keep track of which item is currently being displayed
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Callback to handle sidebar item selection
   const handleSidebarItemClick = (index) => {
@@ -26,9 +26,11 @@ const Home = () => {
           <div className='container-div'>
             {/* Conditionally render based on activeIndex */}
             {activeIndex === 0 && <GeneralStatistics/>}
+           </div>
+           <div className="ps-4">
             {activeIndex === 1 && <DepositHistory/>}
             {activeIndex === 2 && <ExpensesHistory/>}
-          </div>
+            </div>
         </div>
       </div>
     </div>

@@ -45,6 +45,21 @@
     border: 2px solid #000;
 }
 
+.add-bank{
+    height: 35px;
+}
+.close-deposit , .close-account{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+.container-amount , .container-add-bank{
+    z-index: 9999;
+    position: fixed;
+    margin-inline: 18%;
+
+}
 @media screen and (max-width:1150px){
     .general-card{
         flex-direction: column;
@@ -52,5 +67,7 @@
         row-gap: 10px;
         align-items: center;
     }
+
 }
+
  

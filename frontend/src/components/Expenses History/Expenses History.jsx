@@ -10,17 +10,17 @@ export default function ExpensesHistory(params) {
       <div>
         <table className="text-white w-100" style={{ borderCollapse: 'collapse' }}>
           <tr style={{ borderBottom: '1px solid #4B476C' , height:"59px" }}>
-            <th>Amount</th>
+            <th className="ps-5">Amount</th>
             <th>Bank</th>
             <th>Date</th>
             <th>Description</th>
           </tr>
           {data.map(el => (
             <tr style={{ borderBottom: '1px solid #4B476C' , height:"59px"}}>
-              <td>{el.Amount} $</td>
-              <td>{el.Bank}</td>
-              <td>{el.Date}</td>
-              <td>{el.Description}</td>
+              <td className="ps-5 w-25">{el.Amount} $</td>
+              <td className="w-25">{el.Bank}</td>
+              <td className="w-25">{el.Date}</td>
+              <td className="w-25">{el.Description}</td>
             </tr>
           ))}
         </table>

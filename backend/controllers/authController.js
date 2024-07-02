@@ -1,15 +1,15 @@
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const User = require('../models/User');
 const OTP = require('../models/otpModel');
-const generateTokenAndSetCookie = require('../utils/generateTokenAndSetCookies')
+const generateTokenAndSetCookie = require('../utils/generateTokenAndSetCookies');
 
 require('dotenv').config()
 
 const register = async (req, res) => {
+
   const { username, email, password, otp } = req.body;
 
   try {
-    
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
@@ -32,14 +32,17 @@ const register = async (req, res) => {
       });
     }
     //hash password
-    
-    user = new User({ username, email, password });
-    user.password = await bcrypt.hash(password, 10);
-    generateTokenAndSetCookie(user._id, res);
-    await user.save();
+
+    newUser = new User({ username, email, password });
+
+    newUser.password = await bcryptjs.hash(password, 10);
+    generateTokenAndSetCookie(newUser._id, res);
+    await newUser.save();
 
     res.status(201).json({
-      msg: 'User registered successfully'
+      _id: newUser._id,
+      username: newUser.username,
+      email: newUser.username,
     });
   } catch (err) {
     console.error(err.message);
@@ -55,17 +58,17 @@ const login = async (req, res) => {
     // Check if user exists
     let user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
-        msg: 'Invalid credentials'
-      });
+      return res.status(400).json(
+        'email not found'
+      );
     }
 
     // Check password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcryptjs.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({
-        msg: 'Invalid credentials'
-      });
+      return res.status(400).json(
+        'wrong password'
+      );
     }
 
     // Generate JWT token
@@ -74,8 +77,9 @@ const login = async (req, res) => {
     generateTokenAndSetCookie(user._id, res)
     res.status(200).json({
       _id: user._id,
+      username: user.username,
+      email: user.email
 
-      username: user.username
     });
   } catch (err) {
     console.error(err.message);
@@ -84,26 +88,7 @@ const login = async (req, res) => {
 }
 
 
-const getUser = async (req, res) => {
-  try {
 
-    const userId = req.user.id;
-
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({
-        msg: 'User not found'
-      });
-    }
-
-    // Return the user data
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-}
 
 const logout = (req, res) => {
   try {
@@ -116,4 +101,4 @@ const logout = (req, res) => {
 };
 
 
-module.exports = { register, login, logout ,getUser};
+module.exports = { register, login, logout };

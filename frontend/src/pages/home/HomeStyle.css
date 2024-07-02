@@ -9,10 +9,12 @@ body{
 .container-div{
   position: relative;
   width: 100%;
-  max-width: 400px;
+  padding-left: 40px;
+  padding-top: 1px;
+  /* max-width: 400px;
   min-width: 400px;
-  margin: auto;
-  display: flex;
+  margin: auto; */
+  /* display: flex; */
   justify-content: center;
 }
 
@@ -22,12 +24,8 @@ body{
   
 .fixed-div {
   position: fixed;
-  top: 0;
   left: 0;
-  width: 250px; /* Example width */
-  height: 100vh; /* Full viewport height */
-  background-color: white; /* Or any color */
-  z-index: 10; /* Ensure it's above other elements */
+  margin-top: 10px;
 }
 
 .container-home-content {
