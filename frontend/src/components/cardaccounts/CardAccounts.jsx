@@ -29,11 +29,7 @@ const CardAccounts = (props) => {
         }
     };
     
-    const Account=[
-        {"bankName":"visa","accountNumber":"3456797","balance":"23500"},
-        {"bankName":"visa","accountNumber":"3456797","balance":"23500"},
 
-    ]
     return (
         <div className="d-flex general-card">
             {Account.map(acc =>
