@@ -29,6 +29,8 @@ const CardAccounts = (props) => {
         }
     };
     
+    
+    
     return (
         <div className="d-flex general-card">
             {Account.map(acc =>

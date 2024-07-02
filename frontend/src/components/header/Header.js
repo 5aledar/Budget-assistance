@@ -16,6 +16,7 @@ const Header = () => {
           method: "POST",
           body: JSON.stringify({ email: email }),
         });
+        console.log('ss');
         console.log(res);
         const data = await res.json();
 

@@ -2,11 +2,12 @@ import React from "react";
 // import Navbar from "./components/navbar/Navbar";
 // import Footer from "./components/footer/Footer";
 import { Outlet } from "react-router-dom";
-import { userTokenContext } from "./Contexts/userTokenContext";
+// import { useAuthContext } from "./context/AuthContext";
 
 function RootLayout() {
+  // const authContext = useAuthContext()
   return (
-    <userTokenContext.Provider value={localStorage.getItem("userToken")}>
+    // <useAuthContext.Provider value={localStorage.getItem("budget-user")}>
       <div
         style={{
           display: "flex",
@@ -21,7 +22,7 @@ function RootLayout() {
         </main>
         {/* <Footer /> */}
       </div>
-    </userTokenContext.Provider>
+    // </useAuthContext.Provider>
   );
 }
 
