@@ -1,7 +1,7 @@
 import "../Statistics/Statistics.css";
 export default function Statistics() {
   return (
-    <div className="d-inline-flex">
+    <div className="d-flex general-card">
         <div className="cardSta">
           <h5>Total Balance :</h5>
           <h1>1,775.99 $ </h1>

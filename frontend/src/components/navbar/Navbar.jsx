@@ -76,7 +76,7 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
               <li className="nav-item p-2 about ">
-                <NavLink class="text-light" to={"/about"}>About us</NavLink>
+                <NavLink class="text-light" to={""}>About us</NavLink>
               </li>
               <li className="nav-item p-2 contact ">
                 <NavLink class="text-light" to={""}>Contact us</NavLink>

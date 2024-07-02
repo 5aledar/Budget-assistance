@@ -31,7 +31,7 @@
     height: 358px;
     border-radius: 20px;
     background-color: #1A182B;
-    border: solid 1px red;
+    border: solid 1px black;
 }
 
 .container-add-bank {
@@ -40,7 +40,7 @@
     height: 358px;
     border-radius: 20px;
     background-color: #1A182B;
-    border: 1px solid red;
+    border: solid 1px black;
 }
 .add-bank{
     background-color: #720FBF;
@@ -50,4 +50,7 @@
     border-radius: 3px;
     font-size: 20px;
     font-weight: 500;
+}
+.div-chart{
+    width: 80%;
 }
