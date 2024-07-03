@@ -28,17 +28,10 @@ const CardAccounts = () => {
         }
 
     }
-    const getTotalBalance = async () =>{
-        try {
-            banks.reduce((total , acc) => {total += acc})
-        } catch (error) {
-            toast.error(error.message)
-        }
-    }
+   
     useEffect(() => {
-        
         getData()
-        getTotalBalance()
+    
     }, [showAccount , showDeposit , showWithdraw])
 
 
@@ -52,7 +45,7 @@ const CardAccounts = () => {
         const res = await fetch(`http://localhost:3000/bank/${budgetUser}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ bankName, accountNumber, balance }),
+            body: JSON.stringify({ bankName, accountNumber, balance })
         })
         const response = await res.json
         // toast(response)
@@ -148,8 +141,8 @@ const CardAccounts = () => {
         <div className="d-flex flex-wrap  general-card">
             {Account && Array.isArray(Account) ? (
                 Account.map(acc => (
-                    <div class="card-parent card-account mb-3  text-light" key={acc._id} >
-                        <div class="card-body">
+                    <div className="card-parent card-account mb-3  text-light" key={acc._id} >
+                        <div className="card-body">
                             <div className="d-flex justify-content-between">
                                 <p className="card-title card-title1 m-0">{acc.bankName}</p>
                                 <h6 className="card-title card-title2 m-0">acc id : {acc.accountNumber}</h6>
@@ -181,10 +174,10 @@ const CardAccounts = () => {
                     </div>
                 </div>
             )} */}
-            <button class="add-account " >
+            <button className="add-account " >
                 <svg onClick={() => add('2')} xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path d="M16.2576 2.4848L16.2576 29.7575" stroke="#4F4B70" stroke-width="3" stroke-linecap="round" />
-                    <path d="M29.5151 16.5L2.24241 16.5" stroke="#4F4B70" stroke-width="3" stroke-linecap="round" />
+                    <path d="M16.2576 2.4848L16.2576 29.7575" stroke="#4F4B70" strokeWidth="3" strokeLinecap="round" />
+                    <path d="M29.5151 16.5L2.24241 16.5" stroke="#4F4B70" strokeWidth="3" strokeLinecap="round" />
                 </svg>
             </button>
 
@@ -246,18 +239,18 @@ const CardAccounts = () => {
                         <p className="close-account" onClick={() => close('2')}>❌</p>
                         <label htmlFor="" class="text-light mb-3" style={{ fontSize: "20px" }}>Bank name :</label>
                         <input type="text" name="" required value={bankName} onChange={(e) => setBankName(e.target.value)}
-                            style={{ backgroundColor: "#423F5A", border: "none", outline: "none", borderRadius: "10px" }} class="py-2 px-4" />
+                            style={{ backgroundColor: "#423F5A", border: "none", outline: "none", borderRadius: "10px" }} className="py-2 px-4" />
                     </div>
-                    <div class="d-flex flex-column">
+                    <div className="d-flex flex-column">
                         <label htmlFor="" class="text-light mb-3" style={{ fontSize: "20px" }}>Account id :</label>
                         <input type="text" name="" value={accountNumber} required
-                            style={{ backgroundColor: "#423F5A", border: "none", outline: "none", borderRadius: "10px" }} class="py-2 px-4" onChange={(e) => setAccountNumber(e.target.value)} />
+                            style={{ backgroundColor: "#423F5A", border: "none", outline: "none", borderRadius: "10px" }} className="py-2 px-4" onChange={(e) => setAccountNumber(e.target.value)} />
                     </div>
-                    <div class="d-flex flex-column">
-                        <label htmlFor="" class="text-light mb-3" style={{ fontSize: "20px" }} >Account balance</label>
+                    <div className="d-flex flex-column">
+                        <label htmlFor="" className="text-light mb-3" style={{ fontSize: "20px" }} >Account balance</label>
                         <input type="text" name="" value={balance} required
-                            style={{ backgroundColor: "#423F5A", border: "none", outline: "none", borderRadius: "10px" }} class=" py-2 px-4" onChange={(e) => setBalance(e.target.value)} />
-                        <button class="card-link add-bank py-1 px-4 mt-5" type='submit'>Add bank</button>
+                            style={{ backgroundColor: "#423F5A", border: "none", outline: "none", borderRadius: "10px" }} className=" py-2 px-4" onChange={(e) => setBalance(e.target.value)} />
+                        <button className="card-link add-bank py-1 px-4 mt-5" type='submit'>Add bank</button>
                     </div>
 
                 </form>
