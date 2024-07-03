@@ -28,12 +28,12 @@ exports.getDailyDeposit = async (req, res) => {
   res.json({ total: totalDailyExpenses, count: dailyTransactions.length });
 };
 exports.getWeeklyExpenses = async (req, res) => {
-  const bankAccountId = req.params.bankAccountId;
+  const userId = req.params.userId;
+
   const date = new Date();
   const today = date.toISOString().split('T')[0];
   const firstDayOfWeek = getFirstDayOfWeek(date);
-  const account = await Transaction.find({ bankAccountId: bankAccountId });
-
+  const account = await Transaction.find({ userId: userId });
   const weeklyTransactions = account.filter(transaction => {
     const transactionDate = transaction.date.toISOString().split('T')[0];
     return transactionDate >= firstDayOfWeek && transactionDate <= today && transaction.type === "withdraw";
@@ -42,9 +42,9 @@ exports.getWeeklyExpenses = async (req, res) => {
 
   
   const totalWeeklyExpenses = weeklyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdraw' ? transaction.amount : 0), 0);
-  console.log(totalWeeklyExpenses);
 
-  res.json({ total: totalWeeklyExpenses, count: weeklyTransactions.length });
+
+  res.json({ total: totalWeeklyExpenses});
 };
 
 
