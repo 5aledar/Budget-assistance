@@ -29,7 +29,7 @@ const useLogin = () => {
 
 			if (res.ok){
 
-				localStorage.setItem("budget-user", JSON.stringify(data));
+				localStorage.setItem("budget-user", JSON.stringify(data._id));
 				setAuthUser(data);
 				navigate('/home')
 			}else{

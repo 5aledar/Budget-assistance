@@ -7,6 +7,7 @@ import ExpensesHistory from '../../components/Expenses History/Expenses History'
 import DepositHistory from '../../components/Deposit History/Deposit History';
 
 const Home = () => {
+  
   // State to keep track of which item is currently being displayed
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -20,7 +21,7 @@ const Home = () => {
       <div className="container-home">
       <Navbar />
       <div className="container-home-content mt-5">
-          <div class="fixed-div">
+          <div className="fixed-div">
           <Sidebar onClickItem={handleSidebarItemClick} />
           </div>
           <div className='container-div'>

@@ -10,7 +10,7 @@ const About = () => {
             <div className="container-about container text-light">
                 <div className="row pb-4">
                     <div className="col">
-                        <img class='about-img mb-5' src={about1} alt="" />
+                        <img className='about-img mb-5' src={about1} alt="" />
                         <h3>
                             Accurate and reliable  statistics day per day
                         </h3>
@@ -22,10 +22,10 @@ const About = () => {
                         <h3>
                             we calculate every thing for you
                         </h3>
-                        <p class="pb-5">
+                        <p className="pb-5">
                             we calculate every thing for you we calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing for youwe calculate every thing
                         </p>
-                        <img class='about-img mt-5 about-img2' src={about2} alt="" />
+                        <img className='about-img mt-5 about-img2' src={about2} alt="" />
                     </div>
                 </div>
             </div>

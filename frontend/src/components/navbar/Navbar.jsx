@@ -58,7 +58,7 @@ const NavBar = () => {
       >
         <div className="container container-nav">
           <div className="d-flex">
-            <NavLink to={"/home"}><img class="navbar-logo" src={logo} alt="" /></NavLink>
+            <NavLink to={"/home"}><img className="navbar-logo" src={logo} alt="" /></NavLink>
             <h1 className="navbar-brand text-light">
               Budget-Assistance
             </h1>
@@ -78,10 +78,10 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
               <li className="nav-item p-2 about ">
-                <NavLink class="text-light" to={""}>About us</NavLink>
+                <NavLink className="text-light" to={""}>About us</NavLink>
               </li>
               <li className="nav-item p-2 contact ">
-                <NavLink class="text-light" to={""}>Contact us</NavLink>
+                <NavLink className="text-light" to={""}>Contact us</NavLink>
               </li>
               {
                 !authUser ?

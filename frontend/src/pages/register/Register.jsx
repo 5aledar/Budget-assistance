@@ -27,33 +27,33 @@ const Register = () => {
             <h2 className="text-light title-form">Budget-Assistance</h2>
           </div>
 
-          <div class="wrapperb">
+          <div className="wrapperb">
             <form action="" onSubmit={handleSubmit}>
-              <p class="form-login ">Welcome</p>
-              <div class="input-box pt-2 ">
-                <label htmlFor="" class=" label-form">User Name</label>
+              <p className="form-login ">Welcome</p>
+              <div className="input-box pt-2 ">
+                <label htmlFor="" className=" label-form">User Name</label>
                 <input required="" type="text" value={inputs.username} onChange={(e) => setInputs({ ...inputs, username: e.target.value })}/>
               </div>
-              <div class="input-box pt-2 ">
-                <label htmlFor="" class=" label-form">Email</label>
+              <div className="input-box pt-2 ">
+                <label htmlFor="" className=" label-form">Email</label>
                 <input required="" type="email" value={inputs.email} onChange={(e) => setInputs({ ...inputs, email: e.target.value })} />
               </div>
-              <div class="input-box pt-2">
-                <label htmlFor="" class=" label-form">Password</label>
+              <div className="input-box pt-2">
+                <label htmlFor="" className=" label-form">Password</label>
                 <input required="" type="password" value={inputs.password} onChange={(e) => setInputs({ ...inputs, password: e.target.value })} />
               </div>
-              <div class="input-box pt-2">
-                <label htmlFor="" class=" label-form">Confirm Password</label>
+              <div className="input-box pt-2">
+                <label htmlFor="" className=" label-form">Confirm Password</label>
                 <input required="" type="password" value={inputs.confirmPassword} onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })} />
               </div>
-              <div class="input-box pt-2">
-                <label htmlFor="" class=" label-form">OTP</label>
+              <div className="input-box pt-2">
+                <label htmlFor="" className=" label-form">OTP</label>
                 <input required="" type="password" value={inputs.otp}  onChange={(e) => setInputs({ ...inputs, otp: e.target.value })}/>
               </div>
-              <div class="remember-forgot pt-2 pb-5">
+              <div className="remember-forgot pt-2 pb-5">
                 <NavLink to={"/login"}>Already have an account</NavLink>
               </div>
-             <button class="btn" type="submit">Regiter</button>
+             <button className="btn" type="submit">Regiter</button>
             </form>
           </div>
 

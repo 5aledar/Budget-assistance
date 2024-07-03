@@ -17,7 +17,7 @@ export default function Statistics() {
           <h1>75.99 $ </h1>
           <p>Decreased by 4% from the week before </p>
         </div>
-        <button class="add-accountBtn">limit you expenses</button>
+        <button className="add-accountBtn">limit you expenses</button>
     </div>
   );
 }

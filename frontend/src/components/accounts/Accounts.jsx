@@ -17,7 +17,7 @@ const Accounts = () => {
                     <div>
                        <ExpenseIcone/>
                     </div>
-                    <div class="div-chart">
+                    <div className="div-chart">
                         <Chart/>
                     </div>
          </div>

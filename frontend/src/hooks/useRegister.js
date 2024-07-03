@@ -22,7 +22,7 @@ const navigate = useNavigate()
             if (res.ok){
                 navigate('/home')
             }
-            localStorage.setItem("budget-user", JSON.stringify(data));
+            localStorage.setItem("budget-user", JSON.stringify(data._id));
             setAuthUser(data);
         } catch (error) {
             toast.error(error.message);
