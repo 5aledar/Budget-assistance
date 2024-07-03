@@ -21,3 +21,11 @@ exports.getTransactions = async (req, res) => {
   const transactions = await Transaction.find({ bankAccountId });
   res.json(transactions);
 };
+
+exports.getUserTransactions = async (req, res) => {
+  const userId = req.query.userId;
+  const transactions = await Transaction.find({ userId });
+  const deposits = transactions.filter((transaction) => transaction.type === 'deposit');
+  const withdraw = transactions.filter((transaction) => transaction.type === 'withdraw');
+  res.json({ deposits, withdraw });
+};
