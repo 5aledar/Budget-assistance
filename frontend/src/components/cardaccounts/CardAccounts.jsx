@@ -8,7 +8,8 @@ const CardAccounts = () => {
     const [showDeposit, setShowDeposit] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
     const [banks, setBanks] = useState([])
-
+    const [showWithdraw , setShowWithdraw] = useState(false)
+    const [currentBalance , setCurrentBalance] = useState(0)
     const navigate = useNavigate()
     let budgetUser = localStorage.getItem('budget-user')
     const getData = async () => {
@@ -27,9 +28,18 @@ const CardAccounts = () => {
         }
 
     }
+    const getTotalBalance = async () =>{
+        try {
+            banks.reduce((total , acc) => {total += acc})
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
     useEffect(() => {
+        
         getData()
-    }, [showAccount])
+        getTotalBalance()
+    }, [showAccount , showDeposit , showWithdraw])
 
 
     const handleAddSubmit = async (e) => {
@@ -47,7 +57,7 @@ const CardAccounts = () => {
         const response = await res.json
         // toast(response)
         console.log(response);
-       setShowAccount(false)
+        setShowAccount(false)
     }
 
 
@@ -55,6 +65,8 @@ const CardAccounts = () => {
     const [bankName, setBankName] = useState('')
     const [accountNumber, setAccountNumber] = useState('')
     const [balance, setBalance] = useState(0)
+    let [bankId, setBankId] = useState(null)
+    const [amount, setAmount] = useState(0)
     // setBanks(banksAcounts)
     const Account = banks
     //  [
@@ -69,6 +81,8 @@ const CardAccounts = () => {
             setShowDeposit(true);
         } else if (index === '2') {
             setShowAccount(true);
+        }else if (index === '3'){
+            setShowWithdraw(true)
         }
     };
 
@@ -77,14 +91,64 @@ const CardAccounts = () => {
             setShowDeposit(false);
         } else if (index === '2') {
             setShowAccount(false);
+        } else if (index === '3'){
+            setShowWithdraw(false)
         }
     };
 
+
+    const handleDepositSubmit = async (e) => {
+        e.preventDefault()
+        const type = 'deposit'
+        budgetUser = budgetUser.replace(/['"]+/g, '');
+        bankId = bankId.replace(/['"]+/g, '');
+        // console.log(budgetUser);
+        try {
+            
+            const res = await fetch(`http://localhost:3000/transaction/${budgetUser}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ bankId, type, amount }),
+            })
+            const response = await res.json()
+            console.log(response);
+            setShowDeposit(false)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    const handleWithdrawSubmit = async (e) => {
+        e.preventDefault()
+        const type = 'withdraw'
+        if (currentBalance < amount)
+            {
+                toast.error('no balance')
+                setShowWithdraw(false)
+                return 
+            }
+        budgetUser = budgetUser.replace(/['"]+/g, '');
+        bankId = bankId.replace(/['"]+/g, '');
+        // console.log(budgetUser);
+        try {
+            
+            const res = await fetch(`http://localhost:3000/transaction/${budgetUser}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ bankId, type, amount }),
+            })
+            const response = await res.json()
+            console.log(response);
+            setShowWithdraw(false)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
-        <div className="d-flex general-card">
+        <div className="d-flex flex-wrap  general-card">
             {Account && Array.isArray(Account) ? (
                 Account.map(acc => (
-                    <div class="card-parent card-account text-light" key={acc._id} >
+                    <div class="card-parent card-account mb-3  text-light" key={acc._id} >
                         <div class="card-body">
                             <div className="d-flex justify-content-between">
                                 <p className="card-title card-title1 m-0">{acc.bankName}</p>
@@ -92,8 +156,8 @@ const CardAccounts = () => {
                             </div>
                             <p className="card-text m-0">{acc.balance} </p>
                             <div className="d-flex justify-content-between">
-                                <button className="card-link add-deposit p-2" onClick={() => add('1')}>Add deposit</button>
-                                <button className="card-link withdraw p-2">Withdraw</button>
+                                <button className="card-link add-deposit p-2" onClick={() => { add('1'); setBankId(acc._id) }}>Add deposit</button>
+                                <button className="card-link withdraw p-2" onClick={() => { add('3'); setBankId(acc._id); setCurrentBalance(acc.balance) }}>Withdraw</button>
                             </div>
                         </div>
                     </div>
@@ -126,23 +190,52 @@ const CardAccounts = () => {
 
             {showDeposit && (
                 <div className="container-amount d-flex flex-column justify-content-center align-items-center p-4">
-                    <p className="close-deposit" onClick={() => close('1')} >❌</p>
-                    <div className="d-flex flex-column">
-                        <label htmlFor="" className="text-light mb-3" style={{ fontSize: "20px" }}>Amount</label>
-                        <input
-                            type="number"
-                            name=""
-                            placeholder="Enter deposit amount"
-                            style={{
-                                backgroundColor: "#423F5A",
-                                border: "none",
-                                outline: "none",
-                                borderRadius: "10px",
-                            }}
-                            className="mb-5 p-2 px-4"
-                        />
-                    </div>
-                    <button className="card-link add-deposit pt-2 pb-2 px-4">Add Deposit</button>
+                    <form onSubmit={handleDepositSubmit}>
+
+                        <p className="close-deposit" onClick={() => close('1')} >❌</p>
+                        <div className="d-flex flex-column">
+                            <label htmlFor="" className="text-light mb-3" style={{ fontSize: "20px" }}>Amount</label>
+                            <input
+                                type="number"
+                                name=""
+                                placeholder="Enter deposit amount"
+                                style={{
+                                    backgroundColor: "#423F5A",
+                                    border: "none",
+                                    outline: "none",
+                                    borderRadius: "10px",
+                                }}
+                                className="mb-5 p-2 px-4"
+                                value={amount} onChange={(e) => setAmount(e.target.value)}
+                            />
+                        </div>
+                        <button className="card-link add-deposit pt-2 pb-2 px-4" type='submit'>Add Deposit</button>
+                    </form>
+                </div>
+            )}
+            {showWithdraw && (
+                <div className="container-amount d-flex flex-column justify-content-center align-items-center p-4">
+                    <form onSubmit={handleWithdrawSubmit}>
+
+                        <p className="close-deposit" onClick={() => close('3')} >❌</p>
+                        <div className="d-flex flex-column">
+                            <label htmlFor="" className="text-light mb-3" style={{ fontSize: "20px" }}>Amount</label>
+                            <input
+                                type="number"
+                                name=""
+                                placeholder="Enter deposit amount"
+                                style={{
+                                    backgroundColor: "#423F5A",
+                                    border: "none",
+                                    outline: "none",
+                                    borderRadius: "10px",
+                                }}
+                                className="mb-5 p-2 px-4"
+                                value={amount} onChange={(e) => setAmount(e.target.value)}
+                            />
+                        </div>
+                        <button className="card-link add-deposit pt-2 pb-2 px-4" type='submit' >Withdraw</button>
+                    </form>
                 </div>
             )}
             {showAccount && (
