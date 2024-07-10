@@ -2,14 +2,18 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import RootLayout from "./RootLayout";
 import { AuthContextProvider } from "./context/AuthContext";
-import {Toaster}  from 'react-hot-toast'
+import { TransactionContextProvider } from "./context/TransactionContext"
+import { useTransactionContext } from './context/TransactionContext';
+import { Toaster } from 'react-hot-toast'
 function App() {
-  // const { authUser } = useAuthContext();
+
   return (
     <>
       <AuthContextProvider>
-        <RootLayout />
-        <Toaster/>
+        <TransactionContextProvider>
+          <RootLayout />
+          <Toaster />
+        </TransactionContextProvider>
       </AuthContextProvider>
     </>
   );

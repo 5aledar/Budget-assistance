@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from '../../components/sidebar/Sidebar';
 import GeneralStatistics from '../../components/GeneralStatistics/GeneralStatistics';
-import ExpensesHistory from '../../components/Expenses History/Expenses History';
-import DepositHistory from '../../components/Deposit History/Deposit History';
+import ExpensesHistory from '../../components/Expenses History/ExpensesHistory';
+import DepositHistory from '../../components/Deposit History/DepositHistory';
 
 const Home = () => {
   
@@ -38,4 +38,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home

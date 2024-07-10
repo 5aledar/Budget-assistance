@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const statisticsController = require('../controllers/statisticsController');
 
+router.get('/totalBalance/:userId', statisticsController.getTotalBalance);
 router.post('/daily/withdraw/:bankAccountId', statisticsController.getDailyExpenses);
 router.post('/daily/deposit/:bankAccountId', statisticsController.getDailyDeposit);
 router.get('/weekly/withdraw/:userId', statisticsController.getWeeklyExpenses);

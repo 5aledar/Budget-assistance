@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import "./CardAccountStyle.css"
 import toast from 'react-hot-toast'
 import useGetUserBanks from '../../hooks/useGetUserBanks';
 import { useNavigate } from 'react-router-dom';
-
-const CardAccounts = () => {
+import { useTransactionContext } from '../../context/TransactionContext';
+const CardAccounts = memo(() => {
+    const { userTransaction, setUserTransaction } = useTransactionContext()
+    // setUserTransaction(true)
     const [showDeposit, setShowDeposit] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
     const [banks, setBanks] = useState([])
-    const [showWithdraw , setShowWithdraw] = useState(false)
-    const [currentBalance , setCurrentBalance] = useState(0)
+    const [showWithdraw, setShowWithdraw] = useState(false)
+    const [currentBalance, setCurrentBalance] = useState(0)
+    const [deleted , setDeleted] = useState(false)
     const navigate = useNavigate()
     let budgetUser = localStorage.getItem('budget-user')
     const getData = async () => {
+        budgetUser = budgetUser.replace(/['"]+/g, '');
         try {
-            budgetUser = budgetUser.replace(/['"]+/g, '');
-
             const res = await fetch(`http://localhost:3000/bank/${budgetUser}`);
             const data = await res.json();
             if (data.error) {
@@ -26,30 +28,29 @@ const CardAccounts = () => {
         } catch (error) {
             toast.error(error.message);
         }
-
     }
-   
+
     useEffect(() => {
         getData()
-    
-    }, [showAccount , showDeposit , showWithdraw])
+
+    }, [showAccount, showDeposit, showWithdraw  , userTransaction])
 
 
     const handleAddSubmit = async (e) => {
         e.preventDefault()
-        // if (typeof (balance) !== 'number') {
-        //     toast.error('enter a number')
-        //     return
-        // }
+
         budgetUser = budgetUser.replace(/['"]+/g, '');
         const res = await fetch(`http://localhost:3000/bank/${budgetUser}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ bankName, accountNumber, balance })
         })
+        console.log('l');
         const response = await res.json
         // toast(response)
         console.log(response);
+        await setUserTransaction(!userTransaction)
+        console.log(userTransaction);
         setShowAccount(false)
     }
 
@@ -74,7 +75,7 @@ const CardAccounts = () => {
             setShowDeposit(true);
         } else if (index === '2') {
             setShowAccount(true);
-        }else if (index === '3'){
+        } else if (index === '3') {
             setShowWithdraw(true)
         }
     };
@@ -84,7 +85,7 @@ const CardAccounts = () => {
             setShowDeposit(false);
         } else if (index === '2') {
             setShowAccount(false);
-        } else if (index === '3'){
+        } else if (index === '3') {
             setShowWithdraw(false)
         }
     };
@@ -95,9 +96,9 @@ const CardAccounts = () => {
         const type = 'deposit'
         budgetUser = budgetUser.replace(/['"]+/g, '');
         bankId = bankId.replace(/['"]+/g, '');
-        // console.log(budgetUser);
+
         try {
-            
+
             const res = await fetch(`http://localhost:3000/transaction/${budgetUser}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -105,6 +106,7 @@ const CardAccounts = () => {
             })
             const response = await res.json()
             console.log(response);
+            setUserTransaction(!userTransaction)
             setShowDeposit(false)
         } catch (error) {
             console.error(error);
@@ -113,17 +115,16 @@ const CardAccounts = () => {
     const handleWithdrawSubmit = async (e) => {
         e.preventDefault()
         const type = 'withdraw'
-        if (currentBalance < amount)
-            {
-                toast.error('no balance')
-                setShowWithdraw(false)
-                return 
-            }
+        if (currentBalance < amount) {
+            toast.error('no balance')
+            setShowWithdraw(false)
+            return
+        }
         budgetUser = budgetUser.replace(/['"]+/g, '');
         bankId = bankId.replace(/['"]+/g, '');
         // console.log(budgetUser);
         try {
-            
+
             const res = await fetch(`http://localhost:3000/transaction/${budgetUser}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -131,11 +132,34 @@ const CardAccounts = () => {
             })
             const response = await res.json()
             console.log(response);
+            await setUserTransaction(!userTransaction)
+            console.log(userTransaction);
             setShowWithdraw(false)
         } catch (error) {
             console.error(error);
         }
     }
+
+
+    const handleDelete = async (acc) => {
+        try {
+            setBankId(acc._id)
+            const res = await fetch(`http://localhost:3000/bank/${bankId}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const data = await res.json()
+           
+            await setUserTransaction(!userTransaction)
+            toast.success('deleted successfuly')
+
+        } catch (error) {
+
+        }
+    }
+
 
     return (
         <div className="d-flex flex-wrap  general-card">
@@ -146,6 +170,12 @@ const CardAccounts = () => {
                             <div className="d-flex justify-content-between">
                                 <p className="card-title card-title1 m-0">{acc.bankName}</p>
                                 <h6 className="card-title card-title2 m-0">acc id : {acc.accountNumber}</h6>
+                                <button className="trash-button" onClick={() => {  handleDelete(acc) }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                    </svg>
+                                </button>
                             </div>
                             <p className="card-text m-0">{acc.balance} </p>
                             <div className="d-flex justify-content-between">
@@ -159,21 +189,7 @@ const CardAccounts = () => {
                 : (
                     <div className=''>No accounts found</div>
                 )}
-            {/* {Account.map(acc =>
-                <div key={acc._id} class="card-parent card-account text-light" >
-                    <div class="card-body">
-                        <div className="d-flex justify-content-between">
-                            <p class="card-title card-title1 m-0">{acc.bankName}</p>
-                            <h6 class="card-title card-title2 m-0">acc id : {acc.accountNumber}</h6>
-                        </div>
-                        <p class="card-text m-0">{acc.balance} </p>
-                        <div className="d-flex justify-content-between">
-                            <button class="card-link add-deposit p-2" onClick={() => add('1')}>Add deposit</button>
-                            <button class="card-link withdraw p-2">Withdraw</button>
-                        </div>
-                    </div>
-                </div>
-            )} */}
+         
             <button className="add-account " >
                 <svg onClick={() => add('2')} xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path d="M16.2576 2.4848L16.2576 29.7575" stroke="#4F4B70" strokeWidth="3" strokeLinecap="round" />
@@ -260,5 +276,5 @@ const CardAccounts = () => {
 
     )
 }
-
+)
 export default CardAccounts

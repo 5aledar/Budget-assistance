@@ -1,12 +1,13 @@
 const Statistics = require("../models/Statistics");
 const Transaction = require("../models/Transaction");
+const Bank = require('../models/BankAccount')
 // Get daily expenses for a specific account
 exports.getDailyExpenses = async (req, res) => {
   const bankAccountId = req.params.bankAccountId;
   const date = new Date();
   const today = date.toISOString().split('T')[0];
   const account = await Transaction.find({ bankAccountId: bankAccountId });
-  
+
   const dailyTransactions = account.filter(transaction => transaction.date.toISOString().split('T')[0] === today && transaction.type === "withdraw");
 
   const totalDailyExpenses = dailyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdraw' ? transaction.amount : 0), 0);
@@ -29,7 +30,6 @@ exports.getDailyDeposit = async (req, res) => {
 };
 exports.getWeeklyExpenses = async (req, res) => {
   const userId = req.params.userId;
-
   const date = new Date();
   const today = date.toISOString().split('T')[0];
   const firstDayOfWeek = getFirstDayOfWeek(date);
@@ -40,13 +40,35 @@ exports.getWeeklyExpenses = async (req, res) => {
   });
 
 
-  
+
   const totalWeeklyExpenses = weeklyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'withdraw' ? transaction.amount : 0), 0);
 
 
-  res.json({ total: totalWeeklyExpenses});
+  res.json({ total: totalWeeklyExpenses });
 };
 
+exports.getTotalBalance = async (req, res) => {
+  try {
+
+    const userId = req.params.userId
+    const banks = await Bank.find({ userId: userId })
+    console.log(banks);
+    const bankBalance = await banks.map(bank => { return bank.balance })
+    // console.log(bankBalance);
+    // const totalBalance = await bankBalance.reduce(
+    //   (accumulator, currentValue) => {accumulator + currentValue},
+    //   0
+    // );
+    let totalBalance = 0
+    bankBalance.map(tot => {
+      totalBalance = tot + totalBalance
+    })
+    // console.log(totalBalance);
+    res.json(totalBalance)
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 exports.getWeeklyDeposit = async (req, res) => {
   const bankAccountId = req.params.bankAccountId;
@@ -61,7 +83,7 @@ exports.getWeeklyDeposit = async (req, res) => {
   });
 
 
-  
+
   const totalWeeklyExpenses = weeklyTransactions.reduce((acc, transaction) => acc + (transaction.type === 'deposit' ? transaction.amount : 0), 0);
   console.log(totalWeeklyExpenses);
 
